@@ -1,0 +1,20 @@
+Remove - FE framework
+tailwind.config.js
+tailwind.css
+postcss.config.js
+modules/hbs
+modules/uglify
+
+run command
+ - yarn remove autoprefixer postcss-cli postcss-purgecss tailwindcss uglify-js
+
+remove scripts
+ - tailwind
+ - cleancss
+
+run
+ - yarn update
+ - yarn add cors
+ - yarn
+
+edit app.js

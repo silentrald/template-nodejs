@@ -1,0 +1,58 @@
+<div id="login-form" class="bg-gray-400">
+    <div id="login-error" class="text-red-500" hidden>Auth Failed</div>
+
+    <label for="username" class="text-red-500">Username</label>
+    <input type="text" id="username" name="username" maxlength="30" placeholder="Username" autocomplete="off"
+        onkeydown="enter(event)" />
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" placeholder="password" onkeydown="enter(event)" />
+
+    <button type="button" onclick="login()">LOGIN</button>
+</div>
+
+<script>
+    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+
+    const username = document.getElementById('username')
+    const password = document.getElementById('password')
+
+    const error = document.getElementById('login-error')
+
+    function enter(e) {
+        if (e.keyCode === 13) { // enter
+            e.preventDefault()
+            login()
+        }
+    }
+
+    async function login() {
+        // TODO: sanitize & validate username and password length
+
+        const user = {
+            username: username.value,
+            password: password.value
+        }
+
+        try {
+            const res = await fetch('/api/auth/login', {
+                credentials: 'same-origin',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'CSRF-Token': token
+                },
+                body: JSON.stringify(user)
+            })
+
+            if (res.status !== 200) {
+                error.removeAttribute('hidden')
+                return
+            }
+
+            window.location.replace('/');
+        } catch (_err) {
+            error.removeAttribute('hidden')
+        }
+    }
+</script>

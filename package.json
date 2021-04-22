@@ -1,0 +1,47 @@
+{
+  "name": "usg-document-tracker",
+  "version": "0.0.0",
+  "description": "USG Document Tracker",
+  "main": "app.js",
+  "repository": "git link here",
+  "author": "<Insert Author Here>",
+  "license": "SEE LICENSE",
+  "scripts": {
+    "dev": "nodemon -e hbs,js,css app -exec \"tailwind && cleancss && node\"",
+    "build": "tailwind:dist && cleancss:dist && uglify:dist",
+    "db-up": "node migrations/up",
+    "db-insert": "node migrations/insert",
+    "db-delete": "node migrations/delete",
+    "db-down": "node migrations/down",
+    "tailwind": "postcss tailwind.css -o static/css/style.css",
+    "cleancss": "cleancss -o static/css/style.css static/css/style.css",
+    "tailwind:dist": "postcss tailwind.css -o dist/css/style.css",
+    "cleancss:dist": "cleancss -o dist/css/style.css dist/css/style.css",
+    "uglify:dist": "node modules/uglify"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "connect-redis": "^5.1.0",
+    "cookie-parser": "^1.4.5",
+    "csurf": "^1.11.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "handlebars": "^4.7.7",
+    "pg": "^8.5.1",
+    "redis": "^3.0.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.2.4",
+    "clean-css-cli": "^5.2.0",
+    "eslint": "^7.20.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.7",
+    "postcss-cli": "^8.3.1",
+    "postcss-purgecss": "^2.0.3",
+    "prettier": "^2.2.1",
+    "tailwindcss": "^2.0.3",
+    "uglify-js": "^3.12.8"
+  }
+}
