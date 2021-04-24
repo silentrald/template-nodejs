@@ -1,4 +1,4 @@
-# USG Document Tracker
+# <Project title here>
 
 ## Installs
 

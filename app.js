@@ -59,17 +59,17 @@ app.use(csrf({ cookie: true }));
 
 // TODO: for api
 // API ROUTES
-for (const method of [ 'get', 'post', 'patch', 'delete' ]) {
-    for (const file of getFiles(path.join(__dirname, `api/${method}`)).map(file => file.slice(0, -3))) {
-        app[method](`/api/${file.replace(/_/g, ':').replace('/index', '/')}`, require(`./api/${method}/${file}`));
+for (const method of [ 'get' ]) {
+    for (const file of getFiles(path.join(__dirname, 'api' , method)).map((file) => file.slice(0, -3))) {
+        app[method](`/api/${file.replace(/_/g, ':').replace(/\\/g, '/').replace('index', '')}`, require(`./api/${method}/${file}`));
     }
 }
 
 // TODO: for ctrl
 // CTRL ROUTES
 for (const method of [ 'get' ]) {
-    for (const file of getFiles(path.join(__dirname, `ctrl/${method}`)).map(file => file.slice(0, -3))) {
-        app[method](`/${file.replace(/_/g, ':').replace('index', '')}`, require(`./ctrl/${method}/${file}`));
+    for (const file of getFiles(path.join(__dirname, 'ctrl' , method)).map((file) => file.slice(0, -3))) {
+        app[method](`/api/${file.replace(/_/g, ':').replace(/\\/g, '/').replace('index', '')}`, require(`./api/${method}/${file}`));
     }
 }
 
